@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TeamManager</string>
+    <string name="button_addTeamManager">Add TeamManager</string>
+    <string name="hint_TeamManagerTitle">TeamManager Title</string>
+    <string name="hint_TeamManagerDescription">Description </string>
+    <string name="menu_addTeam">Add Team</string>
+</resources>
