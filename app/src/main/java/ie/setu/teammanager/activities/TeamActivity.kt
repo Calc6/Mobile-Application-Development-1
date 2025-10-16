@@ -26,6 +26,12 @@ class TeamActivity : AppCompatActivity() {
 
         app = application as MainApp
 
+        if (intent.hasExtra("Name")) {
+            binding.teamName.setText(intent.getStringExtra("Name"))
+            binding.teamDescription.setText(intent.getStringExtra("Description"))
+        }
+
+
         binding.btnAdd.setOnClickListener {
             team.name = binding.teamName.text.toString()
             team.description = binding.teamDescription.text.toString()

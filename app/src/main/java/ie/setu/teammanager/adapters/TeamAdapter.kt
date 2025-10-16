@@ -1,5 +1,6 @@
 package ie.setu.teammanager.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,15 @@ class TeamAdapter(
                 Timber.i("Deleting team: ${team.name}")
                 app.teams.remove(team)
                 adapter.notifyDataSetChanged()
+            }
+
+            binding.btnEdit.setOnClickListener {
+                Timber.i("Editing team: ${team.name}")
+                val context = binding.root.context
+                val editIntent = Intent(context, ie.setu.teammanager.activities.TeamActivity::class.java)
+                editIntent.putExtra("Manager Name",team.name)
+                editIntent.putExtra("description",team.description)
+                context.startActivity(editIntent)
             }
         }
     }
