@@ -17,11 +17,13 @@ class TeamListActivity : AppCompatActivity() {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityTeamListBinding
+    private lateinit var adapter: TeamAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTeamListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
 
@@ -29,7 +31,8 @@ class TeamListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = TeamAdapter(app.teams)
+        adapter = TeamAdapter(app.teams, app)
+        binding.recyclerView.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -51,8 +54,8 @@ class TeamListActivity : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            if (it.resultCode == RESULT_OK) {
-                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.teams.size)
+            if (it.resultCode == Activity.RESULT_OK) {
+                adapter.notifyItemRangeChanged(0, app.teams.size)
             }
         }
 }

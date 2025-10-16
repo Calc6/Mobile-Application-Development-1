@@ -4,10 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.setu.teammanager.databinding.CardTeamBinding
+import ie.setu.teammanager.main.MainApp
 import ie.setu.teammanager.models.TeamManagerModel
+import timber.log.Timber
 
-class TeamAdapter(private var teams: List<TeamManagerModel>) :
-    RecyclerView.Adapter<TeamAdapter.MainHolder>() {
+class TeamAdapter(
+    private var teams: MutableList<TeamManagerModel>,
+    private val app: MainApp
+) : RecyclerView.Adapter<TeamAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardTeamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -16,7 +20,7 @@ class TeamAdapter(private var teams: List<TeamManagerModel>) :
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val team = teams[holder.adapterPosition]
-        holder.bind(team)
+        holder.bind(team, app, this)
     }
 
     override fun getItemCount(): Int = teams.size
@@ -24,9 +28,15 @@ class TeamAdapter(private var teams: List<TeamManagerModel>) :
     class MainHolder(private val binding: CardTeamBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(team: TeamManagerModel) {
+        fun bind(team: TeamManagerModel, app: MainApp, adapter: TeamAdapter) {
             binding.teamName.text = team.name
             binding.teamDescription.text = team.description
+
+            binding.btnDelete.setOnClickListener {
+                Timber.i("Deleting team: ${team.name}")
+                app.teams.remove(team)
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 }
