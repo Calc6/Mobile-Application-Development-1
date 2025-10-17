@@ -52,6 +52,7 @@ class TeamActivity : AppCompatActivity() {
                 } else {
                     app.teams.add(team.copy())
                 }
+                app.saveTeams()
                 setResult(RESULT_OK)
                 finish()
             } else {

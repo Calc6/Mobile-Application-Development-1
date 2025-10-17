@@ -38,6 +38,7 @@ class TeamAdapter(
             binding.btnDelete.setOnClickListener {
                 Timber.i("Deleting team: ${team.name}")
                 app.teams.remove(team)
+                app.saveTeams()
                 adapter.notifyDataSetChanged()
             }
 
