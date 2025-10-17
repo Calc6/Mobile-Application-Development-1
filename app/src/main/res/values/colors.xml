@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#026E8E</color>
+    <!-- Colours -->
+    <!--https://coolors.co/palette/132a13-31572c-4f772d-90a955-ecf39e -->
+    <color name="dark_green">#132A13</color>
+    <color name="forest_green">#31572C</color>
+    <color name="olive_green">#4F772D</color>
+    <color name="lime_green">#90A955</color>
+    <color name="light_yellow">#ECF39E</color>
 
-    <!-- Add these to fix the red errors -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <color name="colorPrimary">@color/forest_green</color>
+    <color name="colorPrimaryDark">@color/dark_green</color>
+    <color name="colorAccent">@color/lime_green</color>
+    <color name="colorSurface">@color/light_yellow</color>
+    <color name="colorOnPrimary">@color/light_yellow</color>
+    <color name="colorOnSurface">@color/dark_green</color>
 </resources>

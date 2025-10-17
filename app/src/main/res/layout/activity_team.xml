@@ -74,7 +74,7 @@
                     android:background="@color/colorAccent"
                     android:padding="8dp"
                     android:text="@string/button_addTeamManager"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/light_yellow"
                     android:textSize="20sp"
                     android:stateListAnimator="@null" />
             </LinearLayout>
