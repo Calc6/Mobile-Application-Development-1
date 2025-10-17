@@ -35,14 +35,12 @@ class TeamAdapter(
             binding.teamName.text = team.name
             binding.teamDescription.text = team.description
 
-            // DELETE
             binding.btnDelete.setOnClickListener {
                 Timber.i("Deleting team: ${team.name}")
                 app.teams.remove(team)
                 adapter.notifyDataSetChanged()
             }
 
-            // EDIT — Instant edit using dialog
             binding.btnEdit.setOnClickListener {
                 Timber.i("Editing team: ${team.name}")
                 val context = binding.root.context
