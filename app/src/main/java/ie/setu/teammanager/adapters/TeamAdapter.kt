@@ -1,12 +1,14 @@
 package ie.setu.teammanager.adapters
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 import ie.setu.teammanager.databinding.CardTeamBinding
 import ie.setu.teammanager.main.MainApp
 import ie.setu.teammanager.models.TeamManagerModel
+import ie.setu.teammanager.R
 import timber.log.Timber
 
 class TeamAdapter(
@@ -33,19 +35,39 @@ class TeamAdapter(
             binding.teamName.text = team.name
             binding.teamDescription.text = team.description
 
+            // DELETE
             binding.btnDelete.setOnClickListener {
                 Timber.i("Deleting team: ${team.name}")
                 app.teams.remove(team)
                 adapter.notifyDataSetChanged()
             }
 
+            // EDIT — Instant edit using dialog
             binding.btnEdit.setOnClickListener {
                 Timber.i("Editing team: ${team.name}")
                 val context = binding.root.context
-                val editIntent = Intent(context, ie.setu.teammanager.activities.TeamActivity::class.java)
-                editIntent.putExtra("Manager Name",team.name)
-                editIntent.putExtra("description",team.description)
-                context.startActivity(editIntent)
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle("Edit Team")
+
+                val inflater = LayoutInflater.from(context)
+                val dialogView = inflater.inflate(R.layout.edit_team, null)
+                builder.setView(dialogView)
+
+                val nameInput = dialogView.findViewById<EditText>(R.id.editTeamName)
+                val descInput = dialogView.findViewById<EditText>(R.id.editTeamDescription)
+
+                nameInput.setText(team.name)
+                descInput.setText(team.description)
+
+                builder.setPositiveButton("Save") { _, _ ->
+                    team.name = nameInput.text.toString()
+                    team.description = descInput.text.toString()
+                    app.teams[adapterPosition] = team
+                    adapter.notifyItemChanged(adapterPosition)
+                }
+
+                builder.setNegativeButton("Cancel", null)
+                builder.show()
             }
         }
     }

@@ -13,8 +13,10 @@ import ie.setu.teammanager.models.TeamManagerModel
 class TeamActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTeamBinding
-    var team = TeamManagerModel()
     lateinit var app: MainApp
+    var team = TeamManagerModel()
+    var editMode = false
+    var editPosition = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,38 +28,43 @@ class TeamActivity : AppCompatActivity() {
 
         app = application as MainApp
 
-        if (intent.hasExtra("Name")) {
-            binding.teamName.setText(intent.getStringExtra("Name"))
-            binding.teamDescription.setText(intent.getStringExtra("Description"))
+        if (intent.hasExtra("team_name")) {
+            editMode = true
+            binding.teamName.setText(intent.getStringExtra("team_name"))
+            binding.teamDescription.setText(intent.getStringExtra("team_description"))
+            editPosition = intent.getIntExtra("team_position", -1)
         }
-
 
         binding.btnAdd.setOnClickListener {
             team.name = binding.teamName.text.toString()
             team.description = binding.teamDescription.text.toString()
 
             if (team.name.isNotEmpty()) {
-                app.teams.add(team.copy())
+                if (editMode && editPosition >= 0) {
+                    app.teams[editPosition] = team.copy()
+                } else {
+                    app.teams.add(team.copy())
+                }
                 setResult(RESULT_OK)
                 finish()
             } else {
-                Snackbar.make(it, "Please enter a team name", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(it, "enter a team name", Snackbar.LENGTH_LONG).show()
             }
         }
     }
 
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_team, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.item_cancel -> {
-                finish()
-            }
+        override fun onCreateOptionsMenu(menu: Menu): Boolean {
+            menuInflater.inflate(R.menu.menu_team, menu)
+            return super.onCreateOptionsMenu(menu)
         }
-        return super.onOptionsItemSelected(item)
+
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.item_cancel -> {
+                    finish()
+                }
+            }
+            return super.onOptionsItemSelected(item)
+        }
     }
-}
+
