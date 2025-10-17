@@ -32,11 +32,18 @@ class TeamActivity : AppCompatActivity() {
             editMode = true
             binding.teamName.setText(intent.getStringExtra("team_name"))
             binding.teamDescription.setText(intent.getStringExtra("team_description"))
+            binding.managerName.setText(intent.getStringExtra("team_manager"))
+            binding.captainName.setText(intent.getStringExtra("team_captain"))
+            binding.stadiumName.setText(intent.getStringExtra("team_stadium"))
+
             editPosition = intent.getIntExtra("team_position", -1)
         }
 
         binding.btnAdd.setOnClickListener {
             team.name = binding.teamName.text.toString()
+            team.manager = binding.managerName.text.toString()
+            team.captain = binding.captainName.text.toString()
+            team.stadium = binding.stadiumName.text.toString()
             team.description = binding.teamDescription.text.toString()
 
             if (team.name.isNotEmpty()) {

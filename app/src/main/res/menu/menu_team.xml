@@ -5,9 +5,4 @@
         android:title="Cancel"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/item_delete_all"
-        android:title="Delete All"
-        android:icon="@android:drawable/ic_menu_delete"
-        app:showAsAction="ifRoom" />
 </menu>

@@ -45,8 +45,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:hint="@string/hint_TeamManagerTitle"
                     android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+
+
+                <EditText
+                    android:id="@+id/managerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:inputType="textPersonName"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/captainName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:inputType="textPersonName"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/stadiumName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:inputType="textCapWords"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"
@@ -58,7 +94,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:hint="@string/hint_TeamManagerDescription"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
@@ -73,7 +108,6 @@
                     android:layout_margin="16dp"
                     android:background="@color/colorAccent"
                     android:padding="8dp"
-                    android:text="@string/button_addTeamManager"
                     android:textColor="@color/light_yellow"
                     android:textSize="20sp"
                     android:stateListAnimator="@null" />
