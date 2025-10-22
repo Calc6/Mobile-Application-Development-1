@@ -15,6 +15,11 @@ class TeamAdapter(
     private var teams: MutableList<TeamManagerModel>,
     private val app: MainApp
 ) : RecyclerView.Adapter<TeamAdapter.MainHolder>() {
+    private var allTeams: MutableList<TeamManagerModel> = ArrayList(teams)
+
+    init {
+        allTeams.addAll(teams)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardTeamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,6 +32,19 @@ class TeamAdapter(
     }
 
     override fun getItemCount(): Int = teams.size
+
+    fun filter(query: String) {
+        teams.clear()
+        if (query.isEmpty()) {
+            teams.addAll(allTeams)
+        } else {
+            val filteredTeams = allTeams.filter {
+                it.name.contains(query, ignoreCase = true)
+            }
+            teams.addAll(filteredTeams)
+        }
+        notifyDataSetChanged()
+    }
 
     class MainHolder(private val binding: CardTeamBinding) :
         RecyclerView.ViewHolder(binding.root) {

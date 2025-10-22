@@ -26,6 +26,10 @@ class TeamListActivity : AppCompatActivity() {
         binding = ActivityTeamListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.fabSearch.setOnClickListener {
+            searchTeam()
+        }
+
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
 
@@ -71,6 +75,33 @@ class TeamListActivity : AppCompatActivity() {
                 adapter.notifyItemRangeChanged(0, app.teams.size)
             }
         }
+
+    private fun searchTeam(){
+        val searchView = androidx.appcompat.widget.SearchView(this)
+        searchView.queryHint = "search team"
+
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("search Team")
+            .setView(searchView)
+            .setNegativeButton("Close", null)
+            .create()
+
+        val adapter = binding.recyclerView.adapter as ie.setu.teammanager.adapters.TeamAdapter
+
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { adapter.filter(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter(newText ?: "")
+                return true
+            }
+        })
+
+        dialog.show()
+    }
 
     override fun onResume() {
         super.onResume()
