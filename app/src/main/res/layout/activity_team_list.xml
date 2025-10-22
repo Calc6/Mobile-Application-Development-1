@@ -37,6 +37,17 @@
         android:padding="16dp">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="160dp"
+            android:contentDescription="Search teams"
+            app:srcCompat="@android:drawable/ic_menu_search"
+            app:tint="@color/light_yellow"
+            app:backgroundTint="@color/dark_green" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabDeleteAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +59,6 @@
             app:tint="@color/light_yellow"
             app:backgroundTint="@color/dark_green" />
 
-        <!-- Add FAB -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             android:layout_width="wrap_content"
