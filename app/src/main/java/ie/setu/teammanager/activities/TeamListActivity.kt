@@ -34,6 +34,7 @@ class TeamListActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         app = application as MainApp
+        //show the recycler view to show list of teams
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         adapter = TeamAdapter(app.teams, app)
@@ -44,6 +45,7 @@ class TeamListActivity : AppCompatActivity() {
             getResult.launch(launcherIntent)
         }
 
+        // Delete all teams
         binding.fabDeleteAll.setOnClickListener {
             if (app.teams.isNotEmpty()) {
                 AlertDialog.Builder(this)
@@ -62,11 +64,8 @@ class TeamListActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 
+    //Update list after add/edit
     private val getResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -76,6 +75,7 @@ class TeamListActivity : AppCompatActivity() {
             }
         }
 
+    //search box
     private fun searchTeam(){
         val searchView = androidx.appcompat.widget.SearchView(this)
         searchView.queryHint = "search team"
@@ -103,6 +103,7 @@ class TeamListActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    //Refresh the List
     override fun onResume() {
         super.onResume()
         adapter.notifyDataSetChanged()
