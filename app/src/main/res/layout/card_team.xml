@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Layout for each team card shown in the list -->
+
+
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Displays the team name at the top of box -->
+
         <TextView
             android:id="@+id/teamName"
             android:layout_width="wrap_content"
@@ -21,6 +27,7 @@
             android:textStyle="bold"
             tools:text="Team Name" />
 
+        <!-- Displays the team name at the top of box -->
         <TextView
             android:id="@+id/teamDescription"
             android:layout_width="wrap_content"
@@ -28,6 +35,7 @@
             android:layout_below="@id/teamName"
             tools:text="Team Description" />
 
+        <!-- Button for deleting a team -->
         <ImageButton
             android:id="@+id/btnDelete"
             android:layout_width="40dp"
@@ -38,6 +46,7 @@
             android:src="@android:drawable/ic_menu_delete"
             android:contentDescription="Delete team" />
 
+        <!-- Button for editing a team -->
         <ImageButton
             android:id="@+id/btnEdit"
             android:layout_width="40dp"
