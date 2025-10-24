@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--layout for team list screen -->
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,6 +10,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.TeamListActivity">
 
+    <!-- Top bar that shows the screen title -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,6 +19,7 @@
         app:elevation="0dp"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+        <!-- Top bar that shows title -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -23,6 +28,7 @@
             app:titleTextColor="@color/colorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- RecyclerView used to show the list of teams -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -30,12 +36,14 @@
         android:scrollbars="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <!-- Frame that holds the buttons-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom|end"
         android:padding="16dp">
 
+        <!--fab for searching-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabSearch"
             android:layout_width="wrap_content"
@@ -47,6 +55,7 @@
             app:tint="@color/light_yellow"
             app:backgroundTint="@color/dark_green" />
 
+        <!--fab for deleting-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabDeleteAll"
             android:layout_width="wrap_content"
@@ -59,6 +68,7 @@
             app:tint="@color/light_yellow"
             app:backgroundTint="@color/dark_green" />
 
+        <!--fab for adding team-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             android:layout_width="wrap_content"
