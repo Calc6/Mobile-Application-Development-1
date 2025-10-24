@@ -7,7 +7,10 @@ import timber.log.Timber.i
 import ie.setu.teammanager.tools.loadAllTeams
 import ie.setu.teammanager.tools.saveAllTeams
 
+//This is the main app class that runs when the app starts
 class MainApp : Application() {
+
+    //list stores all the teams in the app
     var teams = mutableListOf<TeamManagerModel>()
 
     override fun onCreate() {
@@ -15,9 +18,12 @@ class MainApp : Application() {
         Timber.plant(Timber.DebugTree())
         i("app started")
 
+        //load saved teams from JSON
         teams = loadAllTeams(this)
+        //save current list
         saveAllTeams(this,teams)
 
+        //example teams to make app look full
         teams.add(
             TeamManagerModel(
                 name = "Manchester City",
@@ -79,6 +85,7 @@ class MainApp : Application() {
         )
     }
 
+    //save all teams to json
     fun saveTeams() {
         saveAllTeams(this, teams)
     }
