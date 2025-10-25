@@ -55,7 +55,11 @@ class TeamAdapter(
 
         fun bind(team: TeamManagerModel, app: MainApp, adapter: TeamAdapter) {
             binding.teamName.text = team.name
+            binding.teamCaptain.text = team.captain
+            binding.teamManager.text = team.manager
+            binding .teamStadium.text = team.stadium
             binding.teamDescription.text = team.description
+
 
             //delete button is pressed
             binding.btnDelete.setOnClickListener {
@@ -91,6 +95,7 @@ class TeamAdapter(
                     team.description = descInput.text.toString()
                     app.teams[adapterPosition] = team
                     adapter.notifyItemChanged(adapterPosition)
+                    app.saveTeams()
                 }
 
                 //close if cancel is pressed
